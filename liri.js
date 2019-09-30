@@ -7,7 +7,7 @@ var Spotify = require('node-spotify-api');
 
 var spotify = new Spotify(keys.spotify);
 
-console.log("I'm working!")
+console.log("I'm working!"+  '\n' + "---" + '\n')
 
 if (process.argv[2] === "concert-this") {
   var artist = process.argv.slice(3).join("+")
@@ -69,7 +69,26 @@ if (process.argv[2] === "movie-this") {
 if (process.argv[2] === "spotify-this-song") {
   var song = process.argv.slice(3).join("+")
 
-  spotify.search({ type: 'track', query: song, limit: 5}, function(err, data) {
+  if (process.argv[3] === undefined) {
+    console.log("BUTT")
+    spotify.search({ type: 'track', query: 'the sign', limit: 20} , function(err, data) {
+      if (err) {
+        return console.log('Error occurred: ' + err);
+      }
+      
+      console.log(
+        "Artist: " + data.tracks.items[5].artists[0].name + '\n' +
+        "Song Name: " + data.tracks.items[5].name +  '\n' +
+        "Album Name: " + data.tracks.items[5].album.name +  '\n' +
+        "Spotify Preview Link: " + data.tracks.items[5].external_urls.spotify +  '\n' +
+        "---"
+        )
+  
+      
+      })
+  }
+
+  else {spotify.search({ type: 'track', query: song, limit: 5}, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
@@ -83,8 +102,8 @@ if (process.argv[2] === "spotify-this-song") {
         "---"
         )
     }
-  })
-
+    })
+  }
 }
 
 
