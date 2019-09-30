@@ -3,8 +3,11 @@ require("dotenv").config();
 var axios = require("axios");
 var moment = require("moment")
 var keys = require("./keys.js");
+var Spotify = require('node-spotify-api');
 
-// var spotify = new Spotify(keys.spotify);
+var spotify = new Spotify(keys.spotify);
+
+console.log("I'm working!")
 
 if (process.argv[2] === "concert-this") {
   var artist = process.argv.slice(3).join("+")
@@ -62,3 +65,21 @@ if (process.argv[2] === "movie-this") {
   })
   }
 }
+
+if (process.argv[2] === "spotify-this-song") {
+  //var song = process.argv.slice(3).join("+")
+
+  spotify.search({ type: 'track', query: 'All the Small Things', limit: 4 }, function(err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
+    }
+   
+    console.log(data.tracks.items[0].artists[0].name); 
+  })
+
+}
+
+// node liri.js spotify-this-song
+
+// console.log(data.tracks.items[0]) ==== this is our for loop
+// artist data.tracks.items[0].artists[0].name)
