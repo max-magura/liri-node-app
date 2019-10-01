@@ -56,8 +56,7 @@ function getMovie (movie) {
   function (response) {
     console.log(
       "Title: " + response.data.Title + '\n' +
-       // "Release Year: " + moment(response.data.Released).format('YYYY') + '\n' +
-      // need to make it into just a year^
+      "Release Year: " + response.data.Released + '\n' +
       "IMDB Rating: " + response.data.imdbRating + '\n'
       )
       //"Rotten Tomatoes Rating: " + response.data.Ratings[1].Value  + '\n' +
@@ -135,3 +134,4 @@ if (process.argv[2] === "do-what-it-says") {
    })
 
 }
+
