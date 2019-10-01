@@ -122,7 +122,6 @@ if (process.argv[2] === "spotify-this-song") {
   getSong (song)
 }
 
-
 if (process.argv[2] === "do-what-it-says") {
   fs.readFile("random.txt", "utf8", function(error, data) {
     if (error) {
@@ -132,6 +131,26 @@ if (process.argv[2] === "do-what-it-says") {
     var dataArray = []
     dataArray = data.split(",")
     console.log(dataArray)
+
+    var artist = dataArray[1]
+    var movie = dataArray[1]
+    var song = dataArray[1]
+
+    if (dataArray[0] === "concert-this") {
+      process.argv[3] = artist
+      getConcert (artist)
+    } 
+
+    if (dataArray[0] === "movie-this") {
+      process.argv[3] = movie
+      getMovie (movie)
+    }
+    
+    if (dataArray[0] === "spotify-this-song") {
+      process.argv[3] = song
+      getSong(song)
+    }
+
    })
 
 }
