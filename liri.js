@@ -7,8 +7,7 @@ var Spotify = require('node-spotify-api');
 
 var spotify = new Spotify(keys.spotify);
 
-// console.log("I'm working!"+  '\n' + "---" + '\n')
-
+console.log('\n')
 
 var artist = process.argv.slice(3).join("+")
 var movie = process.argv.slice(3).join("+")
@@ -52,9 +51,11 @@ function getMovie (movie) {
       "Country Movie Premiered: " + response.data.Country + '\n' +
       "Language: " + response.data.Language + '\n' +
       "Plot: " + response.data.Plot + '\n' +
-      "Actors: " + response.data.Actors
+      "Actors: " + response.data.Actors + '\n'
       )
     })
+
+
   }
 
   else {axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy").then(
@@ -81,7 +82,7 @@ function getMovie (movie) {
       "Country Movie Premiered: " + response.data.Country + '\n' +
       "Language: " + response.data.Language + '\n' +
       "Plot: " + response.data.Plot + '\n' +
-      "Actors: " + response.data.Actors
+      "Actors: " + response.data.Actors + '\n'
       )
   })
   }
@@ -122,6 +123,7 @@ function getSong (song) {
         )
     }
     })
+    
   }
 
 }
