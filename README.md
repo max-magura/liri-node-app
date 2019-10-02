@@ -22,6 +22,17 @@ Once downloaded or via the link below, open the terminal for the file and follow
 
 ## See The App In Action
 
-## Visit
+![](LIRI.gif)
 
-You can find the site [here](https://max-magura.github.io/project1/).
+## Use LIRI
+
+Try it for yourself [here](https://max-magura.github.io).
+
+## Tech Used
+
+Node.js
+moment.js
+Axios to get OMDB (online movie database) and BandsInTown data
+Spotify node 
+
+## Fully created by Max Magura, Fall 2019
