@@ -30,9 +30,9 @@ Try it for yourself [here](https://max-magura.github.io).
 
 ## Tech Used
 
-Node.js
-moment.js
-Axios to get OMDB (online movie database) and BandsInTown data
-Spotify node 
+- Node.js
+- moment.js
+- Axios to get OMDB (online movie database) and BandsInTown data
+- Spotify node api
 
 ## Fully created by Max Magura, Fall 2019
