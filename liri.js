@@ -7,7 +7,7 @@ var Spotify = require('node-spotify-api');
 
 var spotify = new Spotify(keys.spotify);
 
-console.log("I'm working!"+  '\n' + "---" + '\n')
+// console.log("I'm working!"+  '\n' + "---" + '\n')
 
 
 var artist = process.argv.slice(3).join("+")
@@ -33,16 +33,22 @@ function getConcert (artist) {
 function getMovie (movie) {
   if (process.argv[3] === undefined) {
     axios.get("http://www.omdbapi.com/?t=mr+nobody+&y=&plot=short&apikey=trilogy").then(
+
     function(response) {
-  
-    console.log(
-      "Title: " + response.data.Title + '\n' +
-      // "Release Year: " + moment(response.data.Released).format('YYYY') + '\n' +
-      // need to make it into just a year^
-      "IMDB Rating: " + response.data.imdbRating + '\n'
-      )
-      //"Rotten Tomatoes Rating: " + response.data.Ratings[1].Value  + '\n' +
+
+      if (response.data.Ratings < 1 || response.data.Ratings == undefined) {
+        rtRating = "Sorry, no Rotten Tomatoes rating is given."
+      }
+      else {
+       rottenRating = response.data.Ratings.filter(entry => entry.Source === "Rotten Tomatoes") 
+       rtRating = rottenRating[0].Value
+      }
+
       console.log(
+      "Title: " + response.data.Title + '\n' +
+      "Release Year: " + response.data.Year + '\n' +
+      "IMDB Rating: " + response.data.imdbRating + '\n' +
+      "Rotten Tomatoes Rating: " + rtRating  + '\n' +
       "Country Movie Premiered: " + response.data.Country + '\n' +
       "Language: " + response.data.Language + '\n' +
       "Plot: " + response.data.Plot + '\n' +
@@ -54,14 +60,24 @@ function getMovie (movie) {
   else {axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy").then(
   
   function (response) {
+
+    // console.log(response.data)
+    var rottenRating
+    var rtRating
+
+    if (response.data.Ratings < 1 || response.data.Ratings == undefined) {
+      rtRating = "Sorry, no Rotten Tomatoes rating is given."
+    }
+    else {
+     rottenRating = response.data.Ratings.filter(entry => entry.Source === "Rotten Tomatoes") 
+     rtRating = rottenRating[0].Value
+    }
+  
     console.log(
       "Title: " + response.data.Title + '\n' +
-       // "Release Year: " + moment(response.data.Released).format('YYYY') + '\n' +
-      // need to make it into just a year^
-      "IMDB Rating: " + response.data.imdbRating + '\n'
-      )
-      //"Rotten Tomatoes Rating: " + response.data.Ratings[1].Value  + '\n' +
-      console.log(
+      "Release Year: " + response.data.Year + '\n' +
+      "IMDB Rating: " + response.data.imdbRating + '\n' +
+      "Rotten Tomatoes Rating: " + rtRating  + '\n' +
       "Country Movie Premiered: " + response.data.Country + '\n' +
       "Language: " + response.data.Language + '\n' +
       "Plot: " + response.data.Plot + '\n' +
