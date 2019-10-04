@@ -24,10 +24,6 @@ Once downloaded or via the link below, open the terminal for the file and follow
 
 ![](LIRI.gif)
 
-## Use LIRI
-
-Try it for yourself [here](https://max-magura.github.io).
-
 ## Tech Used
 
 - Node.js
